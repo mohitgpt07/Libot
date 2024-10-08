@@ -19,7 +19,7 @@ Check out the ***photos and videos*** of LiBot running in real-world environment
 [serial](https://github.com/mohitgpt07/serial): A cross-platform library used to establish reliable and efficient serial communication between the Raspberry Pi and Arduino, managing data flow for real-time motor control and feedback.
 
 ## Prerequisites
-Ensure the following are installed on the Raspberry Pi for LiBot’s functionality:  
+Ensure the following are installed:  
 
 *ROS 2 Humble*  
 *colcon*  
@@ -48,7 +48,7 @@ git clone <serial-repo-link>
 ## Building the Workspace
 **1. Source ROS 2 environment:**
 ```
-source /opt/ros/<your-ros2-distro>/setup.bash
+source /opt/ros/humble/setup.bash
 ```
 
 **2. Build the workspace:**
