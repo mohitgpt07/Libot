@@ -31,13 +31,13 @@ Ensure the following are installed on the Raspberry Pi for LiBot’s functionali
 *Nav2 stack*
 
 ## Setting up the Workspace
-**Create the workspace:**
+**1. Create the workspace:**
 ```
 mkdir -p ~/robot_ws/src
 cd ~/robot_ws/src
 ```
 
-**Clone the repositories:**
+**2. Clone the repositories:**
 ```
 git clone <libot-repo-link>
 git clone <diffdrive_arduino-repo-link>
