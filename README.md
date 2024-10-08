@@ -89,16 +89,18 @@ ros2 launch libot navigation_launch.py use_sim_time:=true
 
 ***Terminal 4: Use RViz2 for visualization and setting navigation goals:***
 ```
-rviz2 -d libot_ws/src/libot/RViz/libot_rviz_config.rviz
+rviz2 -d robot_ws/src/libot/RViz/libot_rviz_config.rviz
 ```
 This will allow you to visualize the map being created in real-time and set navigation goals to see LiBot navigating in the simulated environment.
 
 ### Physical Robot
-For running the physical robot, you will need to launch the RPLidar, SLAM, and navigation separately in different terminals as well.
+To run the physical robot, you will need to launch two essential components on the **Raspberry Pi**, while the other processes can be run from the **host PC** via SSH. This setup ensures efficient operation by splitting the load between the Raspberry Pi and the host PC.
+
+**On Raspberry Pi:**  
 
 ***Terminal 1: Launch Real Robot:***
 ```
-ros2 launch libot launch_sim.launch.py
+ros2 launch libot launch_robot.launch.py
 ```
 
 ***Terminal 2: Launch RPLidar:***
@@ -106,21 +108,24 @@ ros2 launch libot launch_sim.launch.py
 ros2 launch libot rplidar.launch.py
 ```
 
-***Terminal 3: Launch SLAM:***
+**On Host PC (via SSH to Raspberry Pi):**
+
+***Terminal 1: Launch SLAM:***
 ```
 ros2 launch libot online_async_launch.py params_file:=./robot_ws/src/libot/config/mapper_params_online_async.yaml use_sim_time:=false
 ```
 
-***Terminal 4: Launch Navigation:***
+***Terminal 2: Launch Navigation:***
 ```
 ros2 launch libot navigation_launch.py use_sim_time:=false
 ```
 
-***Terminal 5: Use RViz2 for visualization and setting navigation goals:***
+***Terminal 3: Use RViz2 for visualization and setting navigation goals:***
 ```
-rviz2 -d libot_ws/src/libot/RViz/libot_rviz_config.rviz
+rviz2 -d robot_ws/src/libot/RViz/libot_rviz_config.rviz
 ```
-With RViz2, you can observe LiBot's live map, visualize the robot's surroundings, and manually set navigation goals for demonstration.
+This setup allows the Raspberry Pi to handle the hardware tasks (RPLidar and motor control) while the host PC manages the more computationally demanding tasks like SLAM, navigation, and visualization.  
+
 
 ## Directory Structure
 ```
