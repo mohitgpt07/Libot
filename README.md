@@ -6,10 +6,10 @@ Check out the *photos and videos* of LiBot running in real-world environments in
 
 ## Robot Overview
 ### Key Components
-**Raspberry Pi 4:** Runs ROS 2 and handles sensor data, path planning, and communication with the Arduino.
-**Arduino Uno:** Handles motor control, receiving commands from the Raspberry Pi and controlling motor drivers.
-**RPLidar A1M8:** Provides 2D laser scans for mapping and obstacle detection.
-**L298N Motor Drivers:** Controls the robot's differential drive motors, receiving PWM signals from the Arduino.
+**Raspberry Pi 4:** Runs ROS 2 and handles sensor data, path planning, and communication with the Arduino.  
+**Arduino Uno:** Handles motor control, receiving commands from the Raspberry Pi and controlling motor drivers.  
+**RPLidar A1M8:** Provides 2D laser scans for mapping and obstacle detection.  
+**L298N Motor Drivers:** Controls the robot's differential drive motors, receiving PWM signals from the Arduino.  
 
 ### Software Components
 [diffdrive_arduino](https://github.com/mohitgpt07/diffdrive_arduino): Implements a ROS2_control hardware interface, allowing ROS 2 to communicate with the Arduino for controlling LiBot's motors. It uses serial communication and works with the diff_drive_controller for velocity feedback and control.
@@ -19,14 +19,15 @@ Check out the *photos and videos* of LiBot running in real-world environments in
 [serial](https://github.com/mohitgpt07/serial): A cross-platform library used to establish reliable and efficient serial communication between the Raspberry Pi and Arduino, managing data flow for real-time motor control and feedback.
 
 ## Prerequisites
-Ensure the following are installed on the Raspberry Pi for LiBot’s functionality:
-*ROS 2 Humble*
-*colcon*
-*libserial*
-*rplidar_ros*
-*ros2 xacro package*
-*ros2_control*
-*SLAM Toolbox*
+Ensure the following are installed on the Raspberry Pi for LiBot’s functionality:  
+
+*ROS 2 Humble*  
+*colcon*  
+*libserial*  
+*rplidar_ros*  
+*ros2 xacro package*  
+*ros2_control*  
+*SLAM Toolbox*  
 *Nav2 stack*
 
 ## Setting up the Workspace
@@ -45,18 +46,18 @@ git clone <serial-repo-link>
 ```
 
 ## Building the Workspace
-**1.Source ROS 2 environment:**
+**1. Source ROS 2 environment:**
 ```
 source /opt/ros/<your-ros2-distro>/setup.bash
 ```
 
-**2.Build the workspace:**
+**2. Build the workspace:**
 ```
 cd ~/robot_ws
 colcon build
 ```
 
-**3.Source the workspace after the build completes:**
+**3. Source the workspace after the build completes:**
 ```
 source install/setup.bash
 ```
@@ -67,55 +68,55 @@ source install/setup.bash
 3. Ensure the correct board and port are selected before uploading.
 
 ## Running the Robot
-### 1. Simulation in Gazebo
+### Simulation in Gazebo
 For testing LiBot in a simulated environment, use Gazebo along with SLAM and navigation.
 Run each component in separate terminals to simulate LiBot’s capabilities:
 
-*Terminal 1: Launch Gazebo simulation:*
+***Terminal 1: Launch Gazebo simulation:***
 ```
 ros2 launch libot launch_sim.launch.py
 ```
 
-*Terminal 2: Launch SLAM:*
+***Terminal 2: Launch SLAM:***
 ```
 ros2 launch libot online_async_launch.py params_file:=./robot_ws/src/libot/config/mapper_params_online_async.yaml use_sim_time:=true
 ```
 
-*Terminal 3: Launch Navigation:*
+***Terminal 3: Launch Navigation:***
 ```
 ros2 launch libot navigation_launch.py use_sim_time:=true
 ```
 
-*Terminal 4: Use RViz2 for visualization and setting navigation goals:*
+***Terminal 4: Use RViz2 for visualization and setting navigation goals:***
 ```
 rviz2 -d libot_ws/src/libot/RViz/libot_rviz_config.rviz
 ```
 This will allow you to visualize the map being created in real-time and set navigation goals to see LiBot navigating in the simulated environment.
 
-### 2. Physical Robot
+### Physical Robot
 For running the physical robot, you will need to launch the RPLidar, SLAM, and navigation separately in different terminals as well.
 
-*Terminal 1: Launch Real Robot:*
+***Terminal 1: Launch Real Robot:***
 ```
 ros2 launch libot launch_sim.launch.py
 ```
 
-*Terminal 2: Launch RPLidar:*
+***Terminal 2: Launch RPLidar:***
 ```
 ros2 launch libot rplidar.launch.py
 ```
 
-*Terminal 3: Launch SLAM:*
+***Terminal 3: Launch SLAM:***
 ```
 ros2 launch libot online_async_launch.py params_file:=./robot_ws/src/libot/config/mapper_params_online_async.yaml use_sim_time:=false
 ```
 
-*Terminal 4: Launch Navigation:*
+***Terminal 4: Launch Navigation:***
 ```
 ros2 launch libot navigation_launch.py use_sim_time:=false
 ```
 
-*Terminal 5: Use RViz2 for visualization and setting navigation goals:*
+***Terminal 5: Use RViz2 for visualization and setting navigation goals:***
 ```
 rviz2 -d libot_ws/src/libot/RViz/libot_rviz_config.rviz
 ```
