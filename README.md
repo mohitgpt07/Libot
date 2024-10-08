@@ -1,18 +1,18 @@
 # LiBot - Autonomous Mobile Robot
 
-LiBot is an autonomous mobile robot designed for real-time mapping, localization, and dynamic navigation in unknown environments. Using Raspberry Pi for high-level control, Arduino for motor interfacing, and RPLidar for environmental scanning, LiBot is capable of avoiding obstacles, creating maps, and navigating through various terrains.
+LiBot is an autonomous mobile robot designed for real-time mapping, localization, and dynamic navigation in unknown environments. Using Raspberry Pi for high-level control, Arduino for motor interfacing, and RPLidar for environmental scanning, LiBot is capable of avoiding obstacles, creating maps, and navigating in 2D plane.
 
-Check out the *photos and videos* of LiBot running in real-world environments in the [media](https://github.com/mohitgpt07/libot/tree/main/media) folder for a demonstration of its capabilities.
+Check out the ***photos and videos*** of LiBot running in real-world environments in the [media](https://github.com/mohitgpt07/libot/tree/main/media) folder for a demonstration of its capabilities.
 
 ## Robot Overview
 ### Key Components
-**Raspberry Pi 4:** Runs ROS 2 and handles sensor data, path planning, and communication with the Arduino.  
+**Raspberry Pi 4:** Serves as the central processing unit for LiBot, running the ROS 2 framework to manage the robot’s functionalities. Its key responsibilities include: Sensor Data Processing, Path Planning, Communication, Control and Coordination.    
 **Arduino Uno:** Handles motor control, receiving commands from the Raspberry Pi and controlling motor drivers.  
 **RPLidar A1M8:** Provides 2D laser scans for mapping and obstacle detection.  
 **L298N Motor Drivers:** Controls the robot's differential drive motors, receiving PWM signals from the Arduino.  
 
 ### Software Components
-[diffdrive_arduino](https://github.com/mohitgpt07/diffdrive_arduino): Implements a ROS2_control hardware interface, allowing ROS 2 to communicate with the Arduino for controlling LiBot's motors. It uses serial communication and works with the diff_drive_controller for velocity feedback and control.
+[diffdrive_arduino](https://github.com/mohitgpt07/diffdrive_arduino): Implements a ros2_control hardware interface, allowing ROS 2 to communicate with the Arduino for controlling LiBot's motors. It uses serial communication and works with the diff_drive_controller for velocity feedback and control.
 
 [ros_arduino_bridge](https://github.com/mohitgpt07/ros_arduino_bridge): Provides a simple serial communication bridge between the Raspberry Pi (running ROS 2) and the Arduino. It sends velocity commands from ROS 2 to the Arduino, which generates the necessary PWM signals for the motor driver.
 
